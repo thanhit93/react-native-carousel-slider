@@ -148,22 +148,22 @@ export default class Carousel extends Component {
 
         // Warnings
         if (!ViewPropTypes) {
-            console.warn('react-native-carousel-slider: It is recommended to use at least version 0.44 of React Native with the plugin');
+            console.warn('react-native-carousel-slider-layout: It is recommended to use at least version 0.44 of React Native with the plugin');
         }
         if (!props.vertical && (!props.sliderWidth || !props.itemWidth)) {
-            console.error('react-native-carousel-slider: You need to specify both `sliderWidth` and `itemWidth` for horizontal carousels');
+            console.error('react-native-carousel-slider-layout: You need to specify both `sliderWidth` and `itemWidth` for horizontal carousels');
         }
         if (props.vertical && (!props.sliderHeight || !props.itemHeight)) {
-            console.error('react-native-carousel-slider: You need to specify both `sliderHeight` and `itemHeight` for vertical carousels');
+            console.error('react-native-carousel-slider-layout: You need to specify both `sliderHeight` and `itemHeight` for vertical carousels');
         }
         if (props.apparitionDelay && !IS_IOS && !props.useScrollView) {
-            console.warn('react-native-carousel-slider: Using `apparitionDelay` on Android is not recommended since it can lead to rendering issues');
+            console.warn('react-native-carousel-slider-layout: Using `apparitionDelay` on Android is not recommended since it can lead to rendering issues');
         }
         if (props.customAnimationType || props.customAnimationOptions) {
-            console.warn('react-native-carousel-slider: Props `customAnimationType` and `customAnimationOptions` have been renamed to `activeAnimationType` and `activeAnimationOptions`');
+            console.warn('react-native-carousel-slider-layout: Props `customAnimationType` and `customAnimationOptions` have been renamed to `activeAnimationType` and `activeAnimationOptions`');
         }
         if (props.onScrollViewScroll) {
-            console.error('react-native-carousel-slider: Prop `onScrollViewScroll` has been removed. Use `onScroll` instead');
+            console.error('react-native-carousel-slider-layout: Prop `onScrollViewScroll` has been removed. Use `onScroll` instead');
         }
     }
 
