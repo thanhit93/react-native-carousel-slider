@@ -1,4 +1,4 @@
-# react-native-snap-carousel
+# react-native-carousel-slider
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 [![npm](https://img.shields.io/npm/v/react-native-snap-carousel.svg?style=flat-square)](https://www.npmjs.com/package/react-native-snap-carousel)
@@ -74,7 +74,7 @@ We're not abandoning the ship, but we need more people to help us keep it alive 
 ## Usage
 
 ```bash
-$ npm install --save react-native-snap-carousel
+$ npm install --save react-native-carousel-slider
 ```
 
 If you're using Typescript you should also install type definitions:
@@ -84,7 +84,7 @@ $ npm install --save @types/react-native-snap-carousel
 
 
 ```javascript
-import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-carousel-slider';
 
 export class MyCarousel extends Component {
 
