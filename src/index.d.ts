@@ -2,15 +2,7 @@
 
 import * as React from 'react';
 import {
-    Animated,
-    LayoutChangeEvent,
-    NativeSyntheticEvent,
-    NativeScrollEvent,
-    StyleProp,
-    ScrollViewProps,
-    ViewStyle,
-    ImageProps,
-    FlatListProps
+    Animated, FlatListProps, ImageProps, LayoutChangeEvent, NativeScrollEvent, NativeSyntheticEvent, ScrollViewProps, StyleProp, ViewStyle
 } from 'react-native';
 
 export interface AdditionalParallaxProps {
@@ -252,6 +244,11 @@ export interface CarouselProps<T> {
      * Callback fired before navigating to an item
      */
     onBeforeSnapToItem?(slideIndex: number): void;
+
+    /**
+     * Scroll index change
+     */
+     onScrollIndexChanged(index: number): void;
 }
 
 export type CarouselProperties<T> = ScrollViewProps & FlatListProps<T> & CarouselProps<T>;
@@ -420,6 +417,10 @@ export default class Carousel<T> extends React.Component<CarouselProperties<T>> 
      * Snap to an item manually
      */
     snapToItem(index: number, animated?: boolean, fireCallback?: boolean, initial?: boolean, lockScroll?: boolean): void;
+     /**
+     * Scroll index change
+     */
+    onScrollIndexChanged(index: number): void;
     /**
      * Snap to next item manually
      */

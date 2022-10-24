@@ -63,7 +63,8 @@ export default class Carousel extends Component {
         useScrollView: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
         vertical: PropTypes.bool,
         onBeforeSnapToItem: PropTypes.func,
-        onSnapToItem: PropTypes.func
+        onSnapToItem: PropTypes.func,
+        onScrollIndexChanged: PropTypes.func
     };
 
     static defaultProps = {
@@ -115,6 +116,7 @@ export default class Carousel extends Component {
         this._previousItemsLength = initialActiveItem;
 
         this._mounted = false;
+        this._lastScrollIndex = -1;
         this._positions = [];
         this._currentContentOffset = 0; // store ScrollView's scroll position
         this._canFireBeforeCallback = false;
@@ -762,7 +764,8 @@ export default class Carousel extends Component {
     }
 
     _onScroll (event) {
-        const { callbackOffsetMargin, enableMomentum, onScroll } = this.props;
+        
+        const { callbackOffsetMargin, enableMomentum, onScroll, onScrollIndexChanged } = this.props;
 
         const scrollOffset = event ? this._getScrollOffset(event) : this._currentContentOffset;
         const nextActiveItem = this._getActiveItem(scrollOffset);
@@ -820,6 +823,14 @@ export default class Carousel extends Component {
 
         if (typeof onScroll === 'function' && event) {
             onScroll(event);
+        }
+
+        const nextIndex = this._getDataIndex(nextActiveItem);
+        if (Platform.OS === 'web' && this._lastScrollIndex != nextIndex) {
+            this._lastScrollIndex = nextIndex;
+            if (onScrollIndexChanged) {
+                onScrollIndexChanged(nextIndex);
+            }
         }
     }
 
@@ -880,7 +891,6 @@ export default class Carousel extends Component {
     // Used when `enableMomentum` is DISABLED
     _onScrollEndDrag (event) {
         const { onScrollEndDrag } = this.props;
-
         if (this._carouselRef) {
             this._onScrollEnd && this._onScrollEnd();
         }
@@ -893,7 +903,6 @@ export default class Carousel extends Component {
     // Used when `enableMomentum` is ENABLED
     _onMomentumScrollEnd (event) {
         const { onMomentumScrollEnd } = this.props;
-
         if (this._carouselRef) {
             this._onScrollEnd && this._onScrollEnd();
         }
@@ -931,6 +940,7 @@ export default class Carousel extends Component {
                 this.startAutoplay();
             }, autoplayDelay + 50);
         }
+        this._lastScrollIndex = -1;
     }
 
     // Due to a bug, this event is only fired on iOS
